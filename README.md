@@ -10,13 +10,31 @@ Pierwszy wiersz podanego zakresu jest traktowany jako nagłówek.
 ## Użycie
 
 ```
-XlsxToJira <plik.xlsx> <od> <do> [--md] [--sheet <nazwa|nr>]
+XlsxToJira [plik.xlsx] [od] [do] [--md] [--sheet <nazwa|nr>]
 ```
 
 ```bash
 dotnet run -- "G:\dane\tabela.xlsx" 2 15
 dotnet run -- "G:\dane\tabela.xlsx" 2 15 --md --sheet Arkusz2
 ```
+
+### Tryb interaktywny
+
+Jeśli program uruchomisz bez parametrów (np. dwuklikiem na `.exe`) albo z niepełnymi lub błędnymi (brak pliku, `do` < `od`), dopyta o brakujące rzeczy:
+
+```
+Ścieżka do pliku .xlsx: G:\dane\tabela.xlsx
+Arkusze:
+  1. Dane
+  2. Drugi
+Arkusz (nr) [1]:
+Arkusz „Dane”: ostatni użyty wiersz = 15
+Wiersz nagłówka (od) [1]: 2
+Ostatni wiersz (do) [15]:
+Format [Enter = Jira wiki markup, m = Markdown]:
+```
+
+Enter przyjmuje wartość domyślną w nawiasie. Pytania idą na stderr, więc `XlsxToJira.exe | clip` nadal wrzuca do schowka samą tabelę.
 
 Czysty tekst prosto do schowka:
 
